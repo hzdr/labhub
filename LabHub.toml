@@ -34,3 +34,12 @@ gitlab_repo = "brndnmtthws-oss/labhub"
 [[mappings]]
 github_repo = "brndnmtthws/conky"
 gitlab_repo = "brndnmtthws-oss/conky"
+
+# ========== custom config ==========
+# customize pull request events
+[pull_request_event_trigger_actions]
+# list of enabled trigger actions
+enabled_trigger_actions = [
+    "review_requested",
+    "synchronize",
+]
