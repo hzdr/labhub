@@ -518,12 +518,8 @@ pub fn handle_event_body(event_type: &str, body: &str) -> Result<String, Request
                 let pr: github::PullRequest = serde_json::from_str(body)?;
                 // custom check if pull request event trigger is enabled in config file
                 if config::action_enabled(pr.action.as_ref()?) {
-                    if pr.action.as_ref() == "closed" && pr.pull_request.merged == false {
-                        info!("Event trigger action 'closed' not enabled, if 'merged' is false. Skipping event.");
-                    } else {
-                        info!("PullRequest action={}", pr.action.as_ref()?);
-                        thread::spawn(move || handle_pr(pr));
-                    }
+                    info!("PullRequest action={}", pr.action.as_ref()?);
+                    thread::spawn(move || handle_pr(pr));
                 } else {
                     info!("Event trigger action not enabled. Skipping event.");
                 }
