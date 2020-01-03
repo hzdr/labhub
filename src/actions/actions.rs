@@ -4,6 +4,9 @@
 pub enum ActionValue {
     ReviewRequested,
     Synchronize,
+    Opened,
+    Reopened,
+    Closed,
 }
 
 #[derive(Debug, PartialEq)]

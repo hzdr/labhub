@@ -42,4 +42,7 @@ gitlab_repo = "brndnmtthws-oss/conky"
 enabled_trigger_actions = [
     "review_requested",
     "synchronize",
+    "opened",
+    "reopened",
+    "closed",
 ]
