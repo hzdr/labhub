@@ -5,6 +5,7 @@ pub enum ActionValue {
     Synchronize,
     Opened,
     Reopened,
+    Merged,
 }
 
 #[derive(Debug, PartialEq)]

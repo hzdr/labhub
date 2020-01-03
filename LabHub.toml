@@ -43,4 +43,5 @@ enabled_trigger_actions = [
     "synchronize",
     "opened",
     "reopened",
+    "merged",
 ]
