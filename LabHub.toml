@@ -40,6 +40,8 @@ gitlab_repo = "brndnmtthws-oss/conky"
 [pull_request_event_trigger_actions]
 # list of enabled trigger actions
 enabled_trigger_actions = [
-    "review_requested",
     "synchronize",
+    "opened",
+    "reopened",
+    "closed",
 ]
