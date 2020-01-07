@@ -617,7 +617,7 @@ mod test {
             let _ic: github::IssueComment = serde_json::from_str(&read_testdata_to_string(
                 "github_created_issue_comment.json",
             ))
-            .unwrap();
+                .unwrap();
         });
     }
 }
