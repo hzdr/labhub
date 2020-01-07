@@ -516,8 +516,13 @@ pub fn handle_event_body(event_type: &str, body: &str) -> Result<String, Request
         "pull_request" => {
             if config::feature_enabled(&config::Feature::ExternalPr) {
                 let pr: github::PullRequest = serde_json::from_str(body)?;
-                info!("PullRequest action={}", pr.action.as_ref()?);
-                thread::spawn(move || handle_pr(pr));
+                // check if pull request event trigger action is enabled in config file
+                if config::action_enabled(pr.action.as_ref()?) {
+                    info!("PullRequest action={}", pr.action.as_ref()?);
+                    thread::spawn(move || handle_pr(pr));
+                } else {
+                    info!("Event trigger action not enabled. Skipping event.");
+                }
             } else {
                 info!("ExternalPr feature not enabled. Skipping event.");
             }
@@ -612,7 +617,7 @@ mod test {
             let _ic: github::IssueComment = serde_json::from_str(&read_testdata_to_string(
                 "github_created_issue_comment.json",
             ))
-            .unwrap();
+                .unwrap();
         });
     }
 }
